@@ -1,0 +1,256 @@
+/* Utilisation de la police Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Style pour le modal du panier */
+#cart-modal.hidden {
+    display: none;
+}
+
+/* Petite animation pour l'apparition du modal */
+#cart-modal-content {
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* --- Nouveaux Styles pour les Onglets Produits (Corrigé) --- */
+
+/* Contenu des onglets (masqué par défaut) */
+.tab-content {
+    display: none;
+}
+
+    /* Contenu de l'onglet actif (visible) */
+    .tab-content.active-tab-content {
+        display: block;
+    }
+
+/* Style de base des boutons d'onglet */
+.tab-btn {
+    /* CSS Standard qui remplace: @apply px-6 py-3 font-semibold text-gray-500 border-b-2 border-transparent transition-all; */
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    font-weight: 600;
+    color: rgb(107 114 128); /* text-gray-500 */
+    border-bottom-width: 2px;
+    border-color: transparent;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+    background-color: transparent; /* Assure que c'est un bouton sans style de base */
+    border-radius: 0; /* Pas de coins arrondis */
+    cursor: pointer;
+}
+
+    /* Style des boutons d'onglet au survol */
+    .tab-btn:hover {
+        /* CSS Standard qui remplace: @apply text-blue-600; */
+        color: rgb(37 99 235); /* text-blue-600 */
+    }
+
+    /* Style du bouton d'onglet actif */
+    .tab-btn.active-tab {
+        /* CSS Standard qui remplace: @apply text-blue-600 border-blue-600; */
+        color: rgb(37 99 235); /* text-blue-600 */
+        border-color: rgb(37 99 235); /* border-blue-600 */
+    }
+
+/* Styles pour les témoignages */
+.testimonial-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .testimonial-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+/* Animation pour l'ajout au panier */
+.add-to-cart-animation {
+    animation: addToCart 0.5s ease;
+}
+
+@keyframes addToCart {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Utilisation de la police Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Style pour le modal du panier */
+#cart-modal.hidden {
+    display: none;
+}
+
+/* Petite animation pour l'apparition du modal */
+#cart-modal-content {
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* --- Nouveaux Styles pour les Onglets Produits (Corrigé) --- */
+
+/* Contenu des onglets (masqué par défaut) */
+.tab-content {
+    display: none;
+}
+
+    /* Contenu de l'onglet actif (visible) */
+    .tab-content.active-tab-content {
+        display: block;
+    }
+
+/* Style de base des boutons d'onglet */
+.tab-btn {
+    /* CSS Standard qui remplace: @apply px-6 py-3 font-semibold text-gray-500 border-b-2 border-transparent transition-all; */
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    font-weight: 600;
+    color: rgb(107 114 128); /* text-gray-500 */
+    border-bottom-width: 2px;
+    border-color: transparent;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+    background-color: transparent; /* Assure que c'est un bouton sans style de base */
+    border-radius: 0; /* Pas de coins arrondis */
+    cursor: pointer;
+}
+
+    /* Style des boutons d'onglet au survol */
+    .tab-btn:hover {
+        /* CSS Standard qui remplace: @apply text-blue-600; */
+        color: rgb(37 99 235); /* text-blue-600 */
+    }
+
+    /* Style du bouton d'onglet actif */
+    .tab-btn.active-tab {
+        /* CSS Standard qui remplace: @apply text-blue-600 border-blue-600; */
+        color: rgb(37 99 235); /* text-blue-600 */
+        border-color: rgb(37 99 235); /* border-blue-600 */
+    }
+
+/* Styles pour les témoignages */
+.testimonial-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .testimonial-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+/* Animation pour l'ajout au panier */
+.add-to-cart-animation {
+    animation: addToCart 0.5s ease;
+}
+
+@keyframes addToCart {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Styles pour les onglets de témoignages */
+.tab-testimonial-btn {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    font-weight: 600;
+    color: rgb(107 114 128);
+    border-bottom-width: 2px;
+    border-color: transparent;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+    background-color: transparent;
+    border-radius: 0;
+    cursor: pointer;
+}
+
+    .tab-testimonial-btn:hover {
+        color: rgb(37 99 235);
+    }
+
+    .tab-testimonial-btn.active-testimonial-tab {
+        color: rgb(37 99 235);
+        border-color: rgb(37 99 235);
+    }
+
+.testimonial-content {
+    display: none;
+}
+
+    .testimonial-content.active-testimonial-content {
+        display: block;
+    }
+
+/* Styles pour les captures d'écran */
+.screenshot-image {
+    transition: transform 0.3s ease;
+}
+
+    .screenshot-image:hover {
+        transform: scale(1.02);
+    }
+
+/* Modal pour les captures d'écran */
+#screenshot-modal.hidden {
+    display: none;
+}
+
+#screenshot-modal {
+    animation: fadeIn 0.3s ease-out;
+}
