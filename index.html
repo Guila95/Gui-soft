@@ -2,8 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gui&Soft - Cabinet Informatique</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    <title>Gui&Soft - Cabinet Informatique</title>
     <!-- Chargement de Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Chargement des icônes (Font Awesome) -->
@@ -14,15 +13,15 @@
 <body class="bg-gray-50 text-gray-800">
 
     <!-- =========== Header / Navigation =========== -->
-    <header class="bg-white shadow-sm sticky top-0 z-40">
+    <header class="bg-white shadow-sm sticky top-0 z-50">
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <!-- Logo original -->
+            <!-- Logo -->
             <a href="#" class="flex items-center space-x-3">
-                <img src="images/logo/Logo.jpg" alt="Logo Gui&Soft" class="h-14 w-auto"
+                <img src="images/logo/Logo.jpg" alt="Logo Gui&Soft" class="h-10 w-auto md:h-14"
                      onerror="this.onerror=null; this.src='https://placehold.co/100x100/2D8CFF/FFFFFF?text=Gui&Soft';">
             </a>
 
-            <!-- Liens de navigation avec design cohérent -->
+            <!-- Menu Desktop -->
             <div class="hidden md:flex items-center space-x-8">
                 <a href="#accueil" class="nav-link active text-gray-600 hover:text-blue-600">Accueil</a>
                 <a href="#produits" class="nav-link text-gray-600 hover:text-blue-600">Produits</a>
@@ -32,14 +31,32 @@
                 <a href="#apropos" class="nav-link text-gray-600 hover:text-blue-600">À Propos</a>
             </div>
 
-            <!-- Icône Panier avec design cohérent -->
-            <button id="open-cart-btn" class="relative text-gray-600 hover:text-blue-600 transition-colors">
-                <i class="fas fa-shopping-cart fa-lg"></i>
-                <span id="cart-count-badge" class="cart-badge opacity-0 transition-opacity">
-                    0
-                </span>
-            </button>
+            <!-- Panier + Menu Mobile -->
+            <div class="flex items-center space-x-4">
+                <!-- Icône Panier -->
+                <button id="open-cart-btn" class="relative text-gray-600 hover:text-blue-600 transition-colors">
+                    <i class="fas fa-shopping-cart fa-lg"></i>
+                    <span id="cart-count-badge" class="cart-badge opacity-0 transition-opacity">0</span>
+                </button>
+
+                <!-- Menu Hamburger Mobile -->
+                <button id="mobile-menu-btn" class="md:hidden text-gray-600 hover:text-blue-600 text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
         </nav>
+
+        <!-- Menu Mobile (caché par défaut) -->
+        <div id="mobile-menu" class="md:hidden bg-white border-t border-gray-200 hidden">
+            <div class="container mx-auto px-4 py-4 space-y-4">
+                <a href="#accueil" class="block nav-link active text-gray-600 hover:text-blue-600 py-2">Accueil</a>
+                <a href="#produits" class="block nav-link text-gray-600 hover:text-blue-600 py-2">Produits</a>
+                <a href="#services" class="block nav-link text-gray-600 hover:text-blue-600 py-2">Services</a>
+                <a href="#temoignages" class="block nav-link text-gray-600 hover:text-blue-600 py-2">Témoignages</a>
+                <a href="#youtube" class="block nav-link text-gray-600 hover:text-blue-600 py-2">Tutoriels</a>
+                <a href="#apropos" class="block nav-link text-gray-600 hover:text-blue-600 py-2">À Propos</a>
+            </div>
+        </div>
     </header>
 
     <!-- =========== Section Principale (Hero) =========== -->

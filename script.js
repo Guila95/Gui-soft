@@ -427,6 +427,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Initialiser les fonctionnalités témoignages
     setupTestimonials();
 
+    // Adapter le menu mobile
+    setupMobileMenu();
+
     // --- GESTIONNAIRES D'ÉVÉNEMENTS ---
 
     // Clic sur "Ajouter au panier"
@@ -497,6 +500,38 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
+
+    // --- MENU MOBILE ---
+    function setupMobileMenu() {
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                // Changer l'icône
+                const icon = mobileMenuBtn.querySelector('i');
+                if (mobileMenu.classList.contains('hidden')) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                }
+            });
+
+            // Fermer le menu en cliquant sur un lien
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                    mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+                });
+            });
+        }
+    }
 
     console.log('Initialisation terminée');
 });
