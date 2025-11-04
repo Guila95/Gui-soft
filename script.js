@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     console.log('DOM chargé - initialisation du script');
 
     // --- BASE DE DONNÉES DES PRODUITS ---
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const productListWindows = document.getElementById('product-list-windows');
     const productListAutres = document.getElementById('product-list-autres');
     const autresPlaceholder = document.getElementById('autres-placeholder');
-    
+
     const tabButtons = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
 
@@ -136,8 +136,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const cartItemsList = document.getElementById('cart-items-list');
     const cartTotalPrice = document.getElementById('cart-total-price');
     const checkoutBtn = document.getElementById('checkout-btn');
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
 
     // Sélecteurs pour les témoignages
     const testimonialTabButtons = document.querySelectorAll('.tab-testimonial-btn');
@@ -148,21 +146,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const screenshotImages = document.querySelectorAll('.screenshot-image');
     const videoTestimonialBtn = document.querySelector('.video-testimonial-btn');
 
-    // Vérification que les éléments existent
-    console.log('Éléments trouvés:', {
-        productListOffice: !!productListOffice,
-        productListWindows: !!productListWindows,
-        productListAutres: !!productListAutres,
-        cartModal: !!cartModal,
-        testimonialTabButtons: testimonialTabButtons.length,
-        screenshotModal: !!screenshotModal
-    });
-
     // --- FONCTIONS PRINCIPALES ---
 
     function renderProducts() {
         console.log('Début du rendu des produits');
-        
+
         // Vider les listes
         if (productListOffice) productListOffice.innerHTML = '';
         if (productListWindows) productListWindows.innerHTML = '';
@@ -172,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         products.forEach(product => {
             const productCard = `
-                <div class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-100 transition-all hover:shadow-xl">
+                <div class="product-card">
                     <div class="w-full h-48 bg-gray-200 flex items-center justify-center overflow-hidden">
                         <img src="${product.image}" alt="${product.name}" 
                             class="w-full h-full object-contain p-4"
@@ -182,14 +170,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         <h3 class="text-lg font-bold text-gray-900 truncate">${product.name}</h3>
                         <p class="text-xl font-extrabold text-blue-600 my-2">${product.price.toFixed(2)} €</p>
                         <button
-                            class="add-to-cart-btn w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition-all"
+                            class="add-to-cart-btn btn-primary w-full flex items-center justify-center gap-2"
                             data-id="${product.id}">
-                            <i class="fas fa-cart-plus mr-2"></i> Ajouter au panier
+                            <i class="fas fa-cart-plus"></i> Ajouter au panier
                         </button>
                     </div>
                 </div>
             `;
-            
+
             // Injecter la carte dans la bonne liste
             if (product.category === 'office' && productListOffice) {
                 productListOffice.innerHTML += productCard;
@@ -205,7 +193,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (autresPlaceholder) {
             autresPlaceholder.classList.toggle('hidden', hasAutres);
         }
-        
+
         console.log('Rendu des produits terminé');
     }
 
@@ -263,10 +251,10 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             cart.push({ ...product, quantity: 1 });
         }
-        
+
         localStorage.setItem('guiSoftCart', JSON.stringify(cart));
         updateCartUI();
-        
+
         // Animation du badge
         if (cartCountBadge) {
             cartCountBadge.classList.add('add-to-cart-animation');
@@ -285,7 +273,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             cart[index].quantity = newQuantity;
         }
-        
+
         localStorage.setItem('guiSoftCart', JSON.stringify(cart));
         updateCartUI();
     }
@@ -302,14 +290,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // --- CORRECTION DE LA FONCTION WHATSAPP ---
     function handleCheckout() {
         if (cart.length === 0) return;
 
         const selectedCountry = document.getElementById('checkout-country')?.value || 'Non spécifié';
         const selectedPayment = document.getElementById('checkout-payment')?.value || 'Non spécifié';
-        
+
         let message = "Bonjour Gui&Soft,\n\nJe souhaite passer la commande suivante :\n\n";
-        
+
         message += `*Pays de Commande:* ${selectedCountry}\n`;
         message += `*Mode de Paiement Préféré:* ${selectedPayment}\n`;
         message += "--------------------\n\n";
@@ -349,7 +338,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     testimonialContents.forEach(content => {
                         content.classList.remove('active-testimonial-content');
                     });
-                    
+
                     // Afficher le contenu cible
                     const activeContent = document.getElementById(`testimonial-${targetTab}`);
                     if (activeContent) {
@@ -376,7 +365,7 @@ document.addEventListener('DOMContentLoaded', function() {
             closeScreenshotModal.addEventListener('click', () => {
                 screenshotModal.classList.add('hidden');
             });
-            
+
             screenshotModal.addEventListener('click', (e) => {
                 if (e.target === screenshotModal) {
                     screenshotModal.classList.add('hidden');
@@ -384,14 +373,41 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // Bouton témoignage vidéo
+        // --- BOUTON TÉMOIGNAGE VIDÉO MODIFIÉ ---
         if (videoTestimonialBtn) {
             videoTestimonialBtn.addEventListener('click', () => {
-                // Rediriger vers une vidéo YouTube ou ouvrir un modal
-                // Pour l'instant, ouvrir un lien YouTube d'exemple
-                window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank');
+                // Ouvrir un modal avec votre vidéo locale
+                const videoModal = document.createElement('div');
+                videoModal.className = 'fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4';
+                videoModal.innerHTML = `
+            <div class="relative max-w-4xl w-full">
+                <button class="absolute -top-12 right-0 text-white text-2xl hover:text-gray-300 close-video-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+                <video controls class="w-full h-auto rounded-lg" poster="images/temoignages/video-poster.jpg">
+                    <source src="images/temoignages/temoignage-video.mp4" type="video/mp4">
+                    Votre navigateur ne supporte pas la lecture de vidéos.
+                </video>
+            </div>
+        `;
+
+                document.body.appendChild(videoModal);
+
+                // Fermer le modal
+                const closeBtn = videoModal.querySelector('.close-video-modal');
+                closeBtn.addEventListener('click', () => {
+                    document.body.removeChild(videoModal);
+                });
+
+                videoModal.addEventListener('click', (e) => {
+                    if (e.target === videoModal) {
+                        document.body.removeChild(videoModal);
+                    }
+                });
             });
         }
+        
+        
     }
 
     // --- INITIALISATION ---
@@ -414,7 +430,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- GESTIONNAIRES D'ÉVÉNEMENTS ---
 
     // Clic sur "Ajouter au panier"
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
         if (e.target.classList.contains('add-to-cart-btn') || e.target.closest('.add-to-cart-btn')) {
             const button = e.target.classList.contains('add-to-cart-btn') ? e.target : e.target.closest('.add-to-cart-btn');
             const productId = button.getAttribute('data-id');
@@ -424,7 +440,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Clic sur les boutons de quantité dans le panier
     if (cartItemsList) {
-        cartItemsList.addEventListener('click', function(e) {
+        cartItemsList.addEventListener('click', function (e) {
             const button = e.target.closest('.quantity-change-btn');
             if (button) {
                 const productId = button.getAttribute('data-id');
@@ -442,35 +458,26 @@ document.addEventListener('DOMContentLoaded', function() {
     // Ouvrir/Fermer le modal du panier
     if (openCartBtn) openCartBtn.addEventListener('click', showCartModal);
     if (closeCartBtn) closeCartBtn.addEventListener('click', hideCartModal);
-    
+
     if (cartModal) {
-        cartModal.addEventListener('click', function(e) {
+        cartModal.addEventListener('click', function (e) {
             if (e.target === cartModal) {
                 hideCartModal();
             }
         });
     }
 
-    // Clic sur "Passer la commande"
-    if (checkoutBtn) checkoutBtn.addEventListener('click', handleCheckout);
-
-    // Menu mobile
-    if (mobileMenuBtn && mobileMenu) {
-        mobileMenuBtn.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
-        });
-        
-        // Fermer le menu mobile en cliquant sur un lien
-        mobileMenu.addEventListener('click', function(e) {
-            if (e.target.tagName === 'A') {
-                mobileMenu.classList.add('hidden');
-            }
+    // Clic sur "Passer la commande" - CORRIGÉ
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            handleCheckout();
         });
     }
 
     // Onglets produits
     tabButtons.forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             // Retirer 'active-tab' de tous les boutons
             tabButtons.forEach(btn => btn.classList.remove('active-tab'));
             // Ajouter 'active-tab' au bouton cliqué
@@ -482,7 +489,7 @@ document.addEventListener('DOMContentLoaded', function() {
             tabContents.forEach(content => {
                 content.classList.remove('active-tab-content');
             });
-            
+
             // Afficher le contenu cible
             const activeContent = document.getElementById(`tab-${targetTab}`);
             if (activeContent) {

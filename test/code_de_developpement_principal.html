@@ -8,8 +8,304 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Chargement des icônes (Font Awesome) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Chargement des styles CSS personnalisés -->
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Police personnalisée pour correspondre au logo */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+        /* Variables de couleurs cohérentes avec le logo */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #0ea5e9;
+            --accent: #f59e0b;
+            --dark: #1e293b;
+            --light: #f8fafc;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Navigation cohérente */
+        .nav-link {
+            position: relative;
+            padding: 8px 0;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+            .nav-link:after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 3px;
+                bottom: 0;
+                left: 0;
+                background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+                transition: width 0.3s ease;
+                border-radius: 2px;
+            }
+
+            .nav-link:hover:after,
+            .nav-link.active:after {
+                width: 100%;
+            }
+
+        /* Boutons avec design cohérent */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+            transition: all 0.3s ease;
+        }
+
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 12px rgba(37, 99, 235, 0.3);
+            }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 10px;
+            border: 2px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+            .btn-secondary:hover {
+                background: var(--primary);
+                color: white;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+            }
+
+        /* Section Hero avec design unique */
+        .hero-section {
+            background: linear-gradient(135deg, var(--light) 0%, #e2e8f0 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+            .hero-section:before {
+                content: '';
+                position: absolute;
+                width: 300px;
+                height: 300px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(14, 165, 233, 0.1) 100%);
+                top: -150px;
+                right: -150px;
+            }
+
+            .hero-section:after {
+                content: '';
+                position: absolute;
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(14, 165, 233, 0.1) 100%);
+                bottom: -100px;
+                left: -100px;
+            }
+
+        /* Cartes de produits avec design cohérent */
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+            .product-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            }
+
+        .product-card-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 16px;
+            text-align: center;
+        }
+
+        /* Onglets avec design cohérent */
+        .tab-btn {
+            padding: 12px 24px;
+            font-weight: 600;
+            color: #64748b;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            background: transparent;
+            border-radius: 0;
+            cursor: pointer;
+        }
+
+            .tab-btn:hover {
+                color: var(--primary);
+            }
+
+            .tab-btn.active-tab {
+                color: var(--primary);
+                border-color: var(--primary);
+            }
+
+        /* Sections avec bordures uniques */
+        .section-divider {
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 2px;
+            margin: 40px 0;
+        }
+
+        /* Footer avec design cohérent */
+        .footer {
+            background: linear-gradient(135deg, var(--dark) 0%, #334155 100%);
+            color: white;
+        }
+
+        /* Animations subtiles */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        /* Badge de panier avec design cohérent */
+        .cart-badge {
+            background: linear-gradient(135deg, var(--accent) 0%, #f97316 100%);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            position: absolute;
+            top: -8px;
+            right: -8px;
+        }
+
+        /* Modal avec design cohérent */
+        .modal-overlay {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px;
+        }
+
+        /* Testimonials avec design cohérent */
+        .testimonial-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+
+            .testimonial-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            }
+
+        .testimonial-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 16px;
+        }
+
+        /* Styles pour les onglets de témoignages */
+        .tab-testimonial-btn {
+            padding: 12px 24px;
+            font-weight: 600;
+            color: #64748b;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            background: transparent;
+            border-radius: 0;
+            cursor: pointer;
+        }
+
+            .tab-testimonial-btn:hover {
+                color: var(--primary);
+            }
+
+            .tab-testimonial-btn.active-testimonial-tab {
+                color: var(--primary);
+                border-color: var(--primary);
+            }
+
+        .testimonial-content {
+            display: none;
+        }
+
+            .testimonial-content.active-testimonial-content {
+                display: block;
+            }
+
+        /* Styles pour les captures d'écran */
+        .screenshot-image {
+            transition: transform 0.3s ease;
+        }
+
+            .screenshot-image:hover {
+                transform: scale(1.02);
+            }
+
+        /* Modal pour les captures d'écran */
+        #screenshot-modal.hidden {
+            display: none;
+        }
+
+        #screenshot-modal {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        /* Contenu des onglets (masqué par défaut) */
+        .tab-content {
+            display: none;
+        }
+
+            /* Contenu de l'onglet actif (visible) */
+            .tab-content.active-tab-content {
+                display: block;
+            }
+    </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
@@ -50,7 +346,7 @@
             </h1>
             <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
                 Solutions logicielles Microsoft et dépannage informatique rapide, directement en ligne.
-                Une expertise qui fait la différence depuis plus de 5 ans.
+                Une expertise qui fait la différence depuis plus de 10 ans.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
                 <a href="#produits" class="btn-primary">
@@ -60,13 +356,6 @@
                     <i class="fas fa-tools mr-2"></i> Nos services de dépannage
                 </a>
             </div>
-            <div class="mt-8 bg-white/80 backdrop-blur-sm rounded-lg p-4 max-w-2xl mx-auto border border-blue-200">
-                <div class="flex items-center justify-center gap-2 text-sm text-gray-700">
-                    <i class="fas fa-check-circle text-green-500"></i>
-                    <span><strong>Garantie Authenticité :</strong> Produits Microsoft officiels - Satisfait ou Remboursé - Service mondial</span>
-                </div>
-            </div>
-
         </div>
     </main>
 
@@ -110,64 +399,6 @@
                     <!-- Produits "Autres" injectés ici -->
                 </div>
                 <p id="autres-placeholder" class="text-center text-gray-500 py-8 hidden">Plus de logiciels seront bientôt disponibles dans cette catégorie.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- =========== Section Garanties =========== -->
-    <section class="py-16 bg-gradient-to-r from-blue-50 to-indigo-50">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Notre Engagement Qualité</h2>
-                <div class="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Carte 1 : Authenticité -->
-                <div class="bg-white rounded-xl p-6 shadow-lg border border-blue-100 text-center">
-                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-shield-alt text-green-600 text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Produits Authentiques</h3>
-                    <p class="text-gray-600">
-                        Toutes nos clés Microsoft sont 100% officielles et vérifiées. Aucune utilisation de crack, KMS PICO ou méthodes illégales.
-                    </p>
-                </div>
-
-                <!-- Carte 2 : Garantie -->
-                <div class="bg-white rounded-xl p-6 shadow-lg border border-blue-100 text-center">
-                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-handshake text-blue-600 text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Satisfait ou Remboursé</h3>
-                    <p class="text-gray-600">
-                        Nous garantissons votre satisfaction. Si le produit ne fonctionne pas, nous vous remboursons intégralement.
-                    </p>
-                </div>
-
-                <!-- Carte 3 : Disponibilité -->
-                <div class="bg-white rounded-xl p-6 shadow-lg border border-blue-100 text-center">
-                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-globe-americas text-purple-600 text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Service Mondial</h3>
-                    <p class="text-gray-600">
-                        Disponible dans tous les pays. Les prix en Euros sont automatiquement convertis dans votre devise locale.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Bannière d'information -->
-            <div class="mt-12 bg-blue-600 text-white rounded-xl p-6 text-center">
-                <div class="flex items-center justify-center gap-4 mb-3">
-                    <i class="fas fa-info-circle text-2xl"></i>
-                    <h3 class="text-xl font-bold">Information Importante</h3>
-                </div>
-                <p class="text-blue-100 max-w-3xl mx-auto">
-                    <strong>Authenticité garantie :</strong> Toutes nos clés Microsoft sont officielles et vérifiées.
-                    <strong>Service mondial :</strong> Nous livrons et dépannons partout dans le monde.
-                    <strong>Prix :</strong> Les montants en Euros sont convertis dans votre devise locale lors du paiement.
-                </p>
             </div>
         </div>
     </section>
@@ -448,7 +679,7 @@
                             <p class="text-sm opacity-90">Client satisfait - Achat Office 2021</p>
                         </div>
                         <div class="p-4">
-                            <img src="images/temoignages_clients/temoignage1.png"
+                            <img src="images/temoignages/screenshots/screenshot1.jpg"
                                  alt="Capture d'écran témoignage client"
                                  class="w-full h-auto rounded-lg border border-gray-200 cursor-pointer screenshot-image"
                                  onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/FFFFFF?text=Capture+d%27écran+1';">
@@ -471,7 +702,7 @@
                             <p class="text-sm opacity-90">Client satisfait - Dépannage à distance</p>
                         </div>
                         <div class="p-4">
-                            <img src="images/temoignages_clients/temoignage2.png"
+                            <img src="images/temoignages/screenshots/screenshot2.jpg"
                                  alt="Capture d'écran témoignage client"
                                  class="w-full h-auto rounded-lg border border-gray-200 cursor-pointer screenshot-image"
                                  onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/FFFFFF?text=Capture+d%27écran+2';">
@@ -494,7 +725,7 @@
                             <p class="text-sm opacity-90">Client satisfait - Achat Windows 11</p>
                         </div>
                         <div class="p-4">
-                            <img src="images/temoignages_clients/temoignage3.png"
+                            <img src="images/temoignages/screenshots/screenshot3.jpg"
                                  alt="Capture d'écran témoignage client"
                                  class="w-full h-auto rounded-lg border border-gray-200 cursor-pointer screenshot-image"
                                  onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/FFFFFF?text=Capture+d%27écran+3';">
@@ -517,7 +748,7 @@
                             <p class="text-sm opacity-90">Client satisfait - Service après-vente</p>
                         </div>
                         <div class="p-4">
-                            <img src="images/temoignages_clients/temoignage4.png"
+                            <img src="images/temoignages/screenshots/screenshot4.jpg"
                                  alt="Capture d'écran témoignage client"
                                  class="w-full h-auto rounded-lg border border-gray-200 cursor-pointer screenshot-image"
                                  onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/FFFFFF?text=Capture+d%27écran+4';">
@@ -540,10 +771,33 @@
                             <p class="text-sm opacity-90">Client satisfait - Installation multiple</p>
                         </div>
                         <div class="p-4">
-                            <img src="images/temoignages_clients/temoignage5.png"
+                            <img src="images/temoignages/screenshots/screenshot5.jpg"
                                  alt="Capture d'écran témoignage client"
                                  class="w-full h-auto rounded-lg border border-gray-200 cursor-pointer screenshot-image"
                                  onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/FFFFFF?text=Capture+d%27écran+5';">
+                        </div>
+                        <div class="p-4 bg-gray-50 border-t border-gray-200">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Capture d'écran 6 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <h4 class="font-bold">Témoignage WhatsApp</h4>
+                            <p class="text-sm opacity-90">Client satisfait - Recommandation</p>
+                        </div>
+                        <div class="p-4">
+                            <img src="images/temoignages/screenshots/screenshot6.jpg"
+                                 alt="Capture d'écran témoignage client"
+                                 class="w-full h-auto rounded-lg border border-gray-200 cursor-pointer screenshot-image"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/FFFFFF?text=Capture+d%27écran+6';">
                         </div>
                         <div class="p-4 bg-gray-50 border-t border-gray-200">
                             <div class="flex text-yellow-400">
@@ -595,78 +849,32 @@
                 <div class="product-card">
                     <div class="product-card-header">
                         <i class="fab fa-youtube fa-2x mb-2"></i>
-                        <h3 class="text-xl font-bold">
-                            Comment retrouver vos clés de produit Windows ou Office perdues
-                        </h3>
+                        <h3 class="text-xl font-bold">Tutoriel Office</h3>
                     </div>
                     <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
-                        <iframe src="https://www.youtube.com/watch?v=BYviquSESIY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full"></iframe>
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full"></iframe>
                     </div>
                 </div>
                 <!-- Vidéo 2 (Exemple) -->
                 <div class="product-card">
                     <div class="product-card-header">
                         <i class="fab fa-youtube fa-2x mb-2"></i>
-                        <h3 class="text-xl font-bold">
-                            Réinitialiser le mot de passe windows7,10,11 comme un pro
-                        </h3>
+                        <h3 class="text-xl font-bold">Optimisation Windows</h3>
                     </div>
                     <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
-                        <iframe src="https://www.youtube.com/watch?v=241LVQSGAOA&t=7s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full"></iframe>
+                        <iframe src="https://www.youtube.com/embed/v3lO7l-p20s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full"></iframe>
                     </div>
                 </div>
                 <!-- Vidéo 3 (Exemple) -->
                 <div class="product-card">
                     <div class="product-card-header">
                         <i class="fab fa-youtube fa-2x mb-2"></i>
-                        <h3 class="text-xl font-bold">
-                            Récupérer votre clé Windows et la transférer vers un Nouveau PC !
-                        </h3>
+                        <h3 class="text-xl font-bold">Sécurité Informatique</h3>
                     </div>
                     <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
-                        <iframe src="https://www.youtube.com/watch?v=XlM8_cDxEoY&t=2s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full"></iframe>
+                        <iframe src="https://www.youtube.com/embed/jNQXAC9IVRw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full"></iframe>
                     </div>
                 </div>
-                <!-- Vidéo 4 (Exemple) -->
-                <div class="product-card">
-                    <div class="product-card-header">
-                        <i class="fab fa-youtube fa-2x mb-2"></i>
-                        <h3 class="text-xl font-bold">
-                            Passer de Windows Famille à Windows Pro
-                        </h3>
-                    </div>
-                    <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
-                        <iframe src="https://www.youtube.com/watch?v=l5gEN_DG0ts&t=5s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full"></iframe>
-                    </div>
-                </div>
-                <!-- Vidéo 5 (Exemple) -->
-                <div class="product-card">
-                    <div class="product-card-header">
-                        <i class="fab fa-youtube fa-2x mb-2"></i>
-                        <h3 class="text-xl font-bold">
-                            connaître la capacité maximale de Mémoire RAM supportée par votre PC
-                        </h3>
-                    </div>
-                    <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
-                        <iframe src="https://www.youtube.com/watch?v=_3HSriDRa2Q" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full"></iframe>
-                    </div>
-                </div>
-
-                <!-- Vidéo 6 (Exemple) -->
-                <div class="product-card">
-                    <div class="product-card-header">
-                        <i class="fab fa-youtube fa-2x mb-2"></i>
-                        <h3 class="text-xl font-bold">
-                            Réinitialiser Windows en toute sécurité sans perdre vos fichiers
-                        </h3>
-                    </div>
-                    <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
-                        <iframe src="https://www.youtube.com/watch?v=IK0f7sii2Fs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full"></iframe>
-                    </div>
-                </div>
-
-
-
             </div>
         </div>
     </section>
@@ -784,6 +992,497 @@
     </div>
 
     <!-- Chargement du script JS -->
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('DOM chargé - initialisation du script');
+
+            // --- BASE DE DONNÉES DES PRODUITS ---
+            const products = [
+                {
+                    id: 1,
+                    name: "Microsoft Office 2024 Pro Plus LTSC",
+                    price: 28.99,
+                    image: "images/produits_en_vente/office/O24PP.jpg",
+                    category: "office"
+                },
+                {
+                    id: 2,
+                    name: "Microsoft Office 2021 Pro Plus",
+                    price: 24.99,
+                    image: "images/produits_en_vente/office/office2021pro.webp",
+                    category: "office"
+                },
+                {
+                    id: 3,
+                    name: "Windows 11 Pro (Clé à vie)",
+                    price: 22.99,
+                    image: "images/produits_en_vente/windows/windows11pro.png",
+                    category: "windows"
+                },
+                {
+                    id: 4,
+                    name: "Microsoft Office 2019 Pro",
+                    price: 19.99,
+                    image: "images/produits_en_vente/office/office2019.webp",
+                    category: "office"
+                },
+                {
+                    id: 5,
+                    name: "Windows 11 Home (Clé à vie)",
+                    price: 22.99,
+                    image: "images/produits_en_vente/windows/whome.avif",
+                    category: "windows"
+                },
+                {
+                    id: 6,
+                    name: "Microsoft Office 2016 Pro Plus",
+                    price: 15.99,
+                    image: "images/produits_en_vente/office/office2016.png",
+                    category: "office"
+                },
+                {
+                    id: 7,
+                    name: "Microsoft Office 365",
+                    price: 24.99,
+                    image: "images/produits_en_vente/office/office365.jpg",
+                    category: "office"
+                },
+                {
+                    id: 8,
+                    name: "Microsoft Office 2019 Pro (Activation avec Internet)",
+                    price: 47.99,
+                    image: "images/produits_en_vente/office/office2019.webp",
+                    category: "office"
+                },
+                {
+                    id: 9,
+                    name: "Microsoft Office 2016 Pro Plus (Activation avec Internet)",
+                    price: 29.99,
+                    image: "images/produits_en_vente/office/office2016.png",
+                    category: "office"
+                },
+                {
+                    id: 10,
+                    name: "Microsoft Office 2021 Pro Plus (Activation avec Internet)",
+                    price: 57.99,
+                    image: "images/produits_en_vente/office/office2021pro.webp",
+                    category: "office"
+                },
+                {
+                    id: 11,
+                    name: "Windows 10 Pro (Clé à vie)",
+                    price: 22.99,
+                    image: "images/produits_en_vente/windows/windows10pro.png",
+                    category: "windows"
+                },
+                {
+                    id: 12,
+                    name: "Windows 10 Home (Clé à vie)",
+                    price: 22.99,
+                    image: "images/produits_en_vente/windows/windows10home.jpg",
+                    category: "windows"
+                },
+                {
+                    id: 13,
+                    name: "Windows 7 Pro (Clé à vie)",
+                    price: 15.99,
+                    image: "images/produits_en_vente/windows/Windows7pro.png",
+                    category: "windows"
+                },
+                {
+                    id: 14,
+                    name: "Windows 7 Ultimate (Clé à vie)",
+                    price: 15.99,
+                    image: "images/produits_en_vente/windows/Windows7Ultimate.png",
+                    category: "windows"
+                },
+                {
+                    id: 15,
+                    name: "Windows 7 Premium (Clé à vie)",
+                    price: 15.99,
+                    image: "images/produits_en_vente/windows/Windows7Premium.png",
+                    category: "windows"
+                },
+                {
+                    id: 16,
+                    name: "Windows 7 Basic (Clé à vie)",
+                    price: 15.99,
+                    image: "images/produits_en_vente/windows/Windows7_basic.png",
+                    category: "windows"
+                }
+            ];
+
+            // --- ÉTAT DU PANIER ---
+            let cart = JSON.parse(localStorage.getItem('guiSoftCart')) || [];
+
+            // --- SÉLECTEURS DOM ---
+            const productListOffice = document.getElementById('product-list-office');
+            const productListWindows = document.getElementById('product-list-windows');
+            const productListAutres = document.getElementById('product-list-autres');
+            const autresPlaceholder = document.getElementById('autres-placeholder');
+
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            const cartModal = document.getElementById('cart-modal');
+            const openCartBtn = document.getElementById('open-cart-btn');
+            const closeCartBtn = document.getElementById('close-cart-btn');
+            const cartCountBadge = document.getElementById('cart-count-badge');
+            const cartItemsList = document.getElementById('cart-items-list');
+            const cartTotalPrice = document.getElementById('cart-total-price');
+            const checkoutBtn = document.getElementById('checkout-btn');
+
+            // Sélecteurs pour les témoignages
+            const testimonialTabButtons = document.querySelectorAll('.tab-testimonial-btn');
+            const testimonialContents = document.querySelectorAll('.testimonial-content');
+            const screenshotModal = document.getElementById('screenshot-modal');
+            const closeScreenshotModal = document.getElementById('close-screenshot-modal');
+            const screenshotModalImage = document.getElementById('screenshot-modal-image');
+            const screenshotImages = document.querySelectorAll('.screenshot-image');
+            const videoTestimonialBtn = document.querySelector('.video-testimonial-btn');
+
+            // --- FONCTIONS PRINCIPALES ---
+
+            function renderProducts() {
+                console.log('Début du rendu des produits');
+
+                // Vider les listes
+                if (productListOffice) productListOffice.innerHTML = '';
+                if (productListWindows) productListWindows.innerHTML = '';
+                if (productListAutres) productListAutres.innerHTML = '';
+
+                let hasAutres = false;
+
+                products.forEach(product => {
+                    const productCard = `
+                            <div class="product-card">
+                                <div class="w-full h-48 bg-gray-200 flex items-center justify-center overflow-hidden">
+                                    <img src="${product.image}" alt="${product.name}"
+                                        class="w-full h-full object-contain p-4"
+                                        onerror="this.onerror=null; this.src='https://placehold.co/400x400/CCCCCC/FFFFFF?text=Image+Produit';">
+                                </div>
+                                <div class="p-5">
+                                    <h3 class="text-lg font-bold text-gray-900 truncate">${product.name}</h3>
+                                    <p class="text-xl font-extrabold text-blue-600 my-2">${product.price.toFixed(2)} €</p>
+                                    <button
+                                        class="add-to-cart-btn btn-primary w-full flex items-center justify-center gap-2"
+                                        data-id="${product.id}">
+                                        <i class="fas fa-cart-plus"></i> Ajouter au panier
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+
+                    // Injecter la carte dans la bonne liste
+                    if (product.category === 'office' && productListOffice) {
+                        productListOffice.innerHTML += productCard;
+                    } else if (product.category === 'windows' && productListWindows) {
+                        productListWindows.innerHTML += productCard;
+                    } else if (product.category === 'autres' && productListAutres) {
+                        productListAutres.innerHTML += productCard;
+                        hasAutres = true;
+                    }
+                });
+
+                // Afficher le message si "Autres" est vide
+                if (autresPlaceholder) {
+                    autresPlaceholder.classList.toggle('hidden', hasAutres);
+                }
+
+                console.log('Rendu des produits terminé');
+            }
+
+            function updateCartUI() {
+                // Mettre à jour la liste des articles dans le modal
+                if (cartItemsList) {
+                    if (cart.length === 0) {
+                        cartItemsList.innerHTML = '<p class="text-gray-500 text-center py-4">Votre panier est vide.</p>';
+                    } else {
+                        cartItemsList.innerHTML = '';
+                        cart.forEach(item => {
+                            const itemHtml = `
+                                    <div class="flex items-center justify-between gap-4 py-2 border-b border-gray-100">
+                                        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-contain rounded-md bg-gray-100 p-1"
+                                            onerror="this.onerror=null; this.src='https://placehold.co/100x100/CCCCCC/FFFFFF?text=IMG';">
+                                        <div class="flex-1">
+                                            <h4 class="font-semibold text-sm">${item.name}</h4>
+                                            <p class="text-gray-500 text-sm">${item.price.toFixed(2)} €</p>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <button class="quantity-change-btn w-6 h-6 bg-gray-200 rounded-full font-bold hover:bg-gray-300" data-id="${item.id}" data-change="-1">-</button>
+                                            <span class="font-bold w-6 text-center">${item.quantity}</span>
+                                            <button class="quantity-change-btn w-6 h-6 bg-gray-200 rounded-full font-bold hover:bg-gray-300" data-id="${item.id}" data-change="1">+</button>
+                                        </div>
+                                        <span class="font-bold w-16 text-right">${(item.price * item.quantity).toFixed(2)} €</span>
+                                    </div>
+                                `;
+                            cartItemsList.innerHTML += itemHtml;
+                        });
+                    }
+                }
+
+                // Mettre à jour le prix total
+                if (cartTotalPrice) {
+                    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                    cartTotalPrice.textContent = `${total.toFixed(2)} €`;
+                }
+
+                // Mettre à jour le badge du panier
+                if (cartCountBadge) {
+                    const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+                    cartCountBadge.textContent = totalQuantity;
+                    cartCountBadge.classList.toggle('opacity-0', totalQuantity === 0);
+                }
+            }
+
+            function addToCart(productId) {
+                const product = products.find(p => p.id === parseInt(productId));
+                if (!product) return;
+
+                const existingItem = cart.find(item => item.id === product.id);
+
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({ ...product, quantity: 1 });
+                }
+
+                localStorage.setItem('guiSoftCart', JSON.stringify(cart));
+                updateCartUI();
+
+                // Animation du badge
+                if (cartCountBadge) {
+                    cartCountBadge.classList.add('add-to-cart-animation');
+                    setTimeout(() => {
+                        cartCountBadge.classList.remove('add-to-cart-animation');
+                    }, 500);
+                }
+            }
+
+            function changeQuantity(productId, newQuantity) {
+                const index = cart.findIndex(item => item.id === parseInt(productId));
+                if (index === -1) return;
+
+                if (newQuantity <= 0) {
+                    cart.splice(index, 1);
+                } else {
+                    cart[index].quantity = newQuantity;
+                }
+
+                localStorage.setItem('guiSoftCart', JSON.stringify(cart));
+                updateCartUI();
+            }
+
+            function showCartModal() {
+                if (cartModal) {
+                    cartModal.classList.remove('hidden');
+                }
+            }
+
+            function hideCartModal() {
+                if (cartModal) {
+                    cartModal.classList.add('hidden');
+                }
+            }
+
+            // --- CORRECTION DE LA FONCTION WHATSAPP ---
+            function handleCheckout() {
+                if (cart.length === 0) {
+                    alert("Votre panier est vide. Ajoutez des produits avant de passer commande.");
+                    return;
+                }
+
+                const selectedCountry = document.getElementById('checkout-country')?.value || 'Non spécifié';
+                const selectedPayment = document.getElementById('checkout-payment')?.value || 'Non spécifié';
+
+                // Construction du message avec un format plus simple
+                let message = "Bonjour Gui&Soft,%0A%0A";
+                message += "Je souhaite passer la commande suivante :%0A%0A";
+
+                message += `*Pays de commande:* ${selectedCountry}%0A`;
+                message += `*Mode de paiement préféré:* ${selectedPayment}%0A`;
+                message += "----------------------------------------%0A%0A";
+                message += "*DÉTAIL DE LA COMMANDE:*%0A%0A";
+
+                cart.forEach((item, index) => {
+                    message += `*Produit ${index + 1}:*%0A`;
+                    message += `- ${item.name}%0A`;
+                    message += `- Quantité: ${item.quantity}%0A`;
+                    message += `- Prix unitaire: ${item.price.toFixed(2)} €%0A`;
+                    message += `- Sous-total: ${(item.price * item.quantity).toFixed(2)} €%0A%0A`;
+                });
+
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                message += "----------------------------------------%0A";
+                message += `*TOTAL: ${total.toFixed(2)} €*%0A%0A`;
+                message += "Merci de m'indiquer la procédure pour finaliser ma commande.%0A%0A";
+                message += "Cordialement";
+
+                // URL WhatsApp avec encodage correct
+                const phoneNumber = "ON3C65UUCJLGF1"; // Votre identifiant WhatsApp
+                const whatsappLink = `https://wa.me/${phoneNumber}?text=${message}`;
+
+                console.log("Lien WhatsApp généré:", whatsappLink);
+
+                // Ouvrir dans un nouvel onglet
+                window.open(whatsappLink, '_blank');
+            }
+
+            // --- FONCTIONNALITÉS POUR LES TÉMOIGNAGES ---
+
+            function setupTestimonials() {
+                console.log('Initialisation des fonctionnalités témoignages');
+
+                // Gestion des onglets témoignages
+                if (testimonialTabButtons.length > 0) {
+                    testimonialTabButtons.forEach(button => {
+                        button.addEventListener('click', () => {
+                            // Retirer 'active-testimonial-tab' de tous les boutons
+                            testimonialTabButtons.forEach(btn => btn.classList.remove('active-testimonial-tab'));
+                            // Ajouter 'active-testimonial-tab' au bouton cliqué
+                            button.classList.add('active-testimonial-tab');
+
+                            const targetTab = button.getAttribute('data-testimonial-tab');
+
+                            // Masquer tous les contenus
+                            testimonialContents.forEach(content => {
+                                content.classList.remove('active-testimonial-content');
+                            });
+
+                            // Afficher le contenu cible
+                            const activeContent = document.getElementById(`testimonial-${targetTab}`);
+                            if (activeContent) {
+                                activeContent.classList.add('active-testimonial-content');
+                            }
+                        });
+                    });
+                }
+
+                // Gestion du modal des captures d'écran
+                if (screenshotImages.length > 0) {
+                    screenshotImages.forEach(img => {
+                        img.addEventListener('click', () => {
+                            if (screenshotModal && screenshotModalImage) {
+                                screenshotModalImage.src = img.src;
+                                screenshotModal.classList.remove('hidden');
+                            }
+                        });
+                    });
+                }
+
+                // Fermer le modal des captures d'écran
+                if (closeScreenshotModal && screenshotModal) {
+                    closeScreenshotModal.addEventListener('click', () => {
+                        screenshotModal.classList.add('hidden');
+                    });
+
+                    screenshotModal.addEventListener('click', (e) => {
+                        if (e.target === screenshotModal) {
+                            screenshotModal.classList.add('hidden');
+                        }
+                    });
+                }
+
+                // Bouton témoignage vidéo
+                if (videoTestimonialBtn) {
+                    videoTestimonialBtn.addEventListener('click', () => {
+                        // Rediriger vers une vidéo YouTube ou ouvrir un modal
+                        // Pour l'instant, ouvrir un lien YouTube d'exemple
+                        window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank');
+                    });
+                }
+            }
+
+            // --- INITIALISATION ---
+
+            // Afficher les produits
+            renderProducts();
+
+            // Mettre à jour l'année du copyright
+            const currentYearElement = document.getElementById('current-year');
+            if (currentYearElement) {
+                currentYearElement.textContent = new Date().getFullYear();
+            }
+
+            // Initialiser le panier
+            updateCartUI();
+
+            // Initialiser les fonctionnalités témoignages
+            setupTestimonials();
+
+            // --- GESTIONNAIRES D'ÉVÉNEMENTS ---
+
+            // Clic sur "Ajouter au panier"
+            document.addEventListener('click', function (e) {
+                if (e.target.classList.contains('add-to-cart-btn') || e.target.closest('.add-to-cart-btn')) {
+                    const button = e.target.classList.contains('add-to-cart-btn') ? e.target : e.target.closest('.add-to-cart-btn');
+                    const productId = button.getAttribute('data-id');
+                    addToCart(productId);
+                }
+            });
+
+            // Clic sur les boutons de quantité dans le panier
+            if (cartItemsList) {
+                cartItemsList.addEventListener('click', function (e) {
+                    const button = e.target.closest('.quantity-change-btn');
+                    if (button) {
+                        const productId = button.getAttribute('data-id');
+                        const change = parseInt(button.getAttribute('data-change'));
+                        const cartItem = cart.find(item => item.id === parseInt(productId));
+
+                        if (cartItem) {
+                            const newQuantity = cartItem.quantity + change;
+                            changeQuantity(productId, newQuantity);
+                        }
+                    }
+                });
+            }
+
+            // Ouvrir/Fermer le modal du panier
+            if (openCartBtn) openCartBtn.addEventListener('click', showCartModal);
+            if (closeCartBtn) closeCartBtn.addEventListener('click', hideCartModal);
+
+            if (cartModal) {
+                cartModal.addEventListener('click', function (e) {
+                    if (e.target === cartModal) {
+                        hideCartModal();
+                    }
+                });
+            }
+
+            // Clic sur "Passer la commande" - CORRIGÉ
+            if (checkoutBtn) {
+                checkoutBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    handleCheckout();
+                });
+            }
+
+            // Onglets produits
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    // Retirer 'active-tab' de tous les boutons
+                    tabButtons.forEach(btn => btn.classList.remove('active-tab'));
+                    // Ajouter 'active-tab' au bouton cliqué
+                    button.classList.add('active-tab');
+
+                    const targetTab = button.getAttribute('data-tab');
+
+                    // Masquer tous les contenus
+                    tabContents.forEach(content => {
+                        content.classList.remove('active-tab-content');
+                    });
+
+                    // Afficher le contenu cible
+                    const activeContent = document.getElementById(`tab-${targetTab}`);
+                    if (activeContent) {
+                        activeContent.classList.add('active-tab-content');
+                    }
+                });
+            });
+
+            console.log('Initialisation terminée');
+        });
+    </script>
 </body>
 </html>

@@ -1,232 +1,262 @@
-/* Utilisation de la police Inter */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+/* Police personnalisée pour correspondre au logo */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+/* Variables de couleurs cohérentes avec le logo */
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --secondary: #0ea5e9;
+    --accent: #f59e0b;
+    --dark: #1e293b;
+    --light: #f8fafc;
+}
 
 body {
     font-family: 'Inter', sans-serif;
+    background-color: var(--light);
 }
 
-/* Style pour le modal du panier */
-#cart-modal.hidden {
-    display: none;
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
 }
 
-/* Petite animation pour l'apparition du modal */
-#cart-modal-content {
-    animation: fadeIn 0.3s ease-out;
+/* Navigation cohérente */
+.nav-link {
+    position: relative;
+    padding: 8px 0;
+    font-weight: 500;
+    transition: all 0.3s ease;
 }
 
+    .nav-link:after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 3px;
+        bottom: 0;
+        left: 0;
+        background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+        transition: width 0.3s ease;
+        border-radius: 2px;
+    }
+
+    .nav-link:hover:after,
+    .nav-link.active:after {
+        width: 100%;
+    }
+
+/* Boutons avec design cohérent */
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+    transition: all 0.3s ease;
+}
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(37, 99, 235, 0.3);
+    }
+
+.btn-secondary {
+    background: white;
+    color: var(--primary);
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 10px;
+    border: 2px solid var(--primary);
+    transition: all 0.3s ease;
+}
+
+    .btn-secondary:hover {
+        background: var(--primary);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+    }
+
+/* Section Hero avec design unique */
+.hero-section {
+    background: linear-gradient(135deg, var(--light) 0%, #e2e8f0 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+    .hero-section:before {
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(14, 165, 233, 0.1) 100%);
+        top: -150px;
+        right: -150px;
+    }
+
+    .hero-section:after {
+        content: '';
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(14, 165, 233, 0.1) 100%);
+        bottom: -100px;
+        left: -100px;
+    }
+
+/* Cartes de produits avec design cohérent */
+.product-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+}
+
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
+.product-card-header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: white;
+    padding: 16px;
+    text-align: center;
+}
+
+/* Onglets avec design cohérent */
+.tab-btn {
+    padding: 12px 24px;
+    font-weight: 600;
+    color: #64748b;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+    background: transparent;
+    border-radius: 0;
+    cursor: pointer;
+}
+
+    .tab-btn:hover {
+        color: var(--primary);
+    }
+
+    .tab-btn.active-tab {
+        color: var(--primary);
+        border-color: var(--primary);
+    }
+
+/* Sections avec bordures uniques */
+.section-divider {
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+    border-radius: 2px;
+    margin: 40px 0;
+}
+
+/* Footer avec design cohérent */
+.footer {
+    background: linear-gradient(135deg, var(--dark) 0%, #334155 100%);
+    color: white;
+}
+
+/* Animations subtiles */
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: scale(0.95);
+        transform: translateY(20px);
     }
 
     to {
         opacity: 1;
-        transform: scale(1);
+        transform: translateY(0);
     }
 }
 
-/* --- Nouveaux Styles pour les Onglets Produits (Corrigé) --- */
-
-/* Contenu des onglets (masqué par défaut) */
-.tab-content {
-    display: none;
+.fade-in {
+    animation: fadeIn 0.6s ease forwards;
 }
 
-    /* Contenu de l'onglet actif (visible) */
-    .tab-content.active-tab-content {
-        display: block;
-    }
-
-/* Style de base des boutons d'onglet */
-.tab-btn {
-    /* CSS Standard qui remplace: @apply px-6 py-3 font-semibold text-gray-500 border-b-2 border-transparent transition-all; */
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-    font-weight: 600;
-    color: rgb(107 114 128); /* text-gray-500 */
-    border-bottom-width: 2px;
-    border-color: transparent;
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
-    background-color: transparent; /* Assure que c'est un bouton sans style de base */
-    border-radius: 0; /* Pas de coins arrondis */
-    cursor: pointer;
+/* Badge de panier avec design cohérent */
+.cart-badge {
+    background: linear-gradient(135deg, var(--accent) 0%, #f97316 100%);
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    position: absolute;
+    top: -8px;
+    right: -8px;
 }
 
-    /* Style des boutons d'onglet au survol */
-    .tab-btn:hover {
-        /* CSS Standard qui remplace: @apply text-blue-600; */
-        color: rgb(37 99 235); /* text-blue-600 */
-    }
+/* Modal avec design cohérent */
+.modal-overlay {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+}
 
-    /* Style du bouton d'onglet actif */
-    .tab-btn.active-tab {
-        /* CSS Standard qui remplace: @apply text-blue-600 border-blue-600; */
-        color: rgb(37 99 235); /* text-blue-600 */
-        border-color: rgb(37 99 235); /* border-blue-600 */
-    }
+.modal-content {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
 
-/* Styles pour les témoignages */
+.modal-header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: white;
+    padding: 20px;
+}
+
+/* Testimonials avec design cohérent */
 .testimonial-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
 }
 
     .testimonial-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
     }
 
-/* Animation pour l'ajout au panier */
-.add-to-cart-animation {
-    animation: addToCart 0.5s ease;
-}
-
-@keyframes addToCart {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.1);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-/* Utilisation de la police Inter */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
-body {
-    font-family: 'Inter', sans-serif;
-}
-
-/* Style pour le modal du panier */
-#cart-modal.hidden {
-    display: none;
-}
-
-/* Petite animation pour l'apparition du modal */
-#cart-modal-content {
-    animation: fadeIn 0.3s ease-out;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-/* --- Nouveaux Styles pour les Onglets Produits (Corrigé) --- */
-
-/* Contenu des onglets (masqué par défaut) */
-.tab-content {
-    display: none;
-}
-
-    /* Contenu de l'onglet actif (visible) */
-    .tab-content.active-tab-content {
-        display: block;
-    }
-
-/* Style de base des boutons d'onglet */
-.tab-btn {
-    /* CSS Standard qui remplace: @apply px-6 py-3 font-semibold text-gray-500 border-b-2 border-transparent transition-all; */
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-    font-weight: 600;
-    color: rgb(107 114 128); /* text-gray-500 */
-    border-bottom-width: 2px;
-    border-color: transparent;
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
-    background-color: transparent; /* Assure que c'est un bouton sans style de base */
-    border-radius: 0; /* Pas de coins arrondis */
-    cursor: pointer;
-}
-
-    /* Style des boutons d'onglet au survol */
-    .tab-btn:hover {
-        /* CSS Standard qui remplace: @apply text-blue-600; */
-        color: rgb(37 99 235); /* text-blue-600 */
-    }
-
-    /* Style du bouton d'onglet actif */
-    .tab-btn.active-tab {
-        /* CSS Standard qui remplace: @apply text-blue-600 border-blue-600; */
-        color: rgb(37 99 235); /* text-blue-600 */
-        border-color: rgb(37 99 235); /* border-blue-600 */
-    }
-
-/* Styles pour les témoignages */
-.testimonial-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-    .testimonial-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    }
-
-/* Animation pour l'ajout au panier */
-.add-to-cart-animation {
-    animation: addToCart 0.5s ease;
-}
-
-@keyframes addToCart {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.1);
-    }
-
-    100% {
-        transform: scale(1);
-    }
+.testimonial-header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: white;
+    padding: 16px;
 }
 
 /* Styles pour les onglets de témoignages */
 .tab-testimonial-btn {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
+    padding: 12px 24px;
     font-weight: 600;
-    color: rgb(107 114 128);
-    border-bottom-width: 2px;
-    border-color: transparent;
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
-    background-color: transparent;
+    color: #64748b;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+    background: transparent;
     border-radius: 0;
     cursor: pointer;
 }
 
     .tab-testimonial-btn:hover {
-        color: rgb(37 99 235);
+        color: var(--primary);
     }
 
     .tab-testimonial-btn.active-testimonial-tab {
-        color: rgb(37 99 235);
-        border-color: rgb(37 99 235);
+        color: var(--primary);
+        border-color: var(--primary);
     }
 
 .testimonial-content {
@@ -254,3 +284,22 @@ body {
 #screenshot-modal {
     animation: fadeIn 0.3s ease-out;
 }
+
+/* Contenu des onglets (masqué par défaut) */
+.tab-content {
+    display: none;
+}
+
+    /* Contenu de l'onglet actif (visible) */
+    .tab-content.active-tab-content {
+        display: block;
+    }
+/* Styles pour la section garanties */
+.guarantee-card {
+    transition: all 0.3s ease;
+}
+
+    .guarantee-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
