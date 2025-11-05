@@ -2,7 +2,8 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    <title>Gui&Soft - Cabinet Informatique</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Gui&Soft - Cabinet Informatique</title>
     <!-- Chargement de Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Chargement des icônes (Font Awesome) -->
@@ -129,7 +130,94 @@
                 <p id="autres-placeholder" class="text-center text-gray-500 py-8 hidden">Plus de logiciels seront bientôt disponibles dans cette catégorie.</p>
             </div>
         </div>
+        <!-- Message pour produits non trouvés -->
+        <div class="mt-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl p-6 text-center text-white">
+            <div class="flex items-center justify-center gap-4 mb-3">
+                <i class="fas fa-search fa-2x"></i>
+                <h3 class="text-2xl font-bold">Vous ne trouvez pas un produit ?</h3>
+            </div>
+            <p class="text-blue-100 mb-4 max-w-2xl mx-auto">
+                Notre catalogue évolue constamment. Si vous ne trouvez pas le logiciel Microsoft dont vous avez besoin,
+                contactez-moi directement sur WhatsApp. Je peux certainement vous le procurer !
+            </p>
+            <a href="https://wa.me/message/ON3C65UUCJLGF1?text=Bonjour%20Gui%26Soft%2C%20je%20recherche%20un%20produit%20non%20list%C3%A9%20sur%20votre%20site."
+               target="_blank"
+               class="btn-secondary bg-white text-blue-600 hover:bg-gray-100 inline-flex items-center gap-2">
+                <i class="fab fa-whatsapp"></i>
+                Demander un produit spécifique
+            </a>
+        </div>
     </section>
+    <!-- =========== Section Types de Licences =========== -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-2">Types de Licences Microsoft</h2>
+            <p class="text-lg text-gray-600 text-center mb-10 max-w-2xl mx-auto">
+                Comprenez les différences entre les différents types de licences pour faire le bon choix
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Licence Retail -->
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-blue-100">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-store text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Licence Retail</h3>
+                    <p class="text-gray-600 text-sm">
+                        <strong>Pour les particuliers</strong><br>
+                        Achetée en magasin ou en ligne. Transferable d'un PC à un autre. Activation en ligne simple et rapide.
+                    </p>
+                </div>
+
+                <!-- Licence OEM -->
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-blue-100">
+                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-laptop text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Licence OEM</h3>
+                    <p class="text-gray-600 text-sm">
+                        <strong>Fournie avec le PC</strong><br>
+                        Liée au matériel d'origine. Non transferable. Prix économique. Idéal pour les nouvelles installations.
+                    </p>
+                </div>
+
+                <!-- Licence Volume -->
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-blue-100">
+                    <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-building text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Licence Volume</h3>
+                    <p class="text-gray-600 text-sm">
+                        <strong>Pour les entreprises</strong><br>
+                        Pour plusieurs postes. Gestion centralisée. Activation par clé multiple (MAK) ou serveur (KMS).
+                    </p>
+                </div>
+
+                <!-- Licence LTSC -->
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-blue-100">
+                    <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-shield-alt text-orange-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Licence LTSC</h3>
+                    <p class="text-gray-600 text-sm">
+                        <strong>Version Long-Term</strong><br>
+                        Sans applications modernes. Mises à jour de sécurité uniquement. Stabilité maximale pour les entreprises.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-blue-50 rounded-xl p-6 border border-blue-200">
+                <h3 class="text-lg font-bold text-blue-900 mb-3">💡 Comment choisir ?</h3>
+                <p class="text-blue-800">
+                    <strong>Retail</strong> : Pour un usage personnel avec possibilité de transfert<br>
+                    <strong>OEM</strong> : Pour une nouvelle installation à prix réduit<br>
+                    <strong>Volume</strong> : Pour les entreprises avec plusieurs postes<br>
+                    <strong>LTSC</strong> : Pour la stabilité et sécurité à long terme
+                </p>
+            </div>
+        </div>
+    </section>
+
 
     <!-- =========== Section Garanties =========== -->
     <section class="py-16 bg-gradient-to-r from-blue-50 to-indigo-50">
@@ -211,6 +299,26 @@
                         <p class="text-gray-600 mb-4">
                             Un problème avec votre PC ? Obtenez une assistance rapide et sécurisée à distance.
                         </p>
+
+                        <!-- Tarifs des services -->
+                        <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                            <h4 class="font-bold text-gray-900 mb-2">Tarifs des services d'installation :</h4>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between">
+                                    <span>Activation Office (déjà installé) :</span>
+                                    <span class="font-bold text-green-600">GRATUIT</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Installation + activation Office :</span>
+                                    <span class="font-bold text-blue-600">8 €</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Installation + activation Windows :</span>
+                                    <span class="font-bold text-blue-600">10 €</span>
+                                </div>
+                            </div>
+                        </div>
+
                         <a href="https://wa.me/message/ON3C65UUCJLGF1?text=Bonjour%20Gui%26Soft%2C%20j'ai%20besoin%20d'une%20assistance%20de%20d%C3%A9pannage%20en%20ligne." target="_blank" class="btn-primary inline-block text-center w-full">
                             Demander un devis <i class="fas fa-arrow-right ml-1"></i>
                         </a>
@@ -587,6 +695,45 @@
         </div>
     </section>
 
+    <!-- =========== Section Clients Fidèles =========== -->
+    <section class="py-16 bg-gradient-to-r from-purple-500 to-purple-600 text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="max-w-3xl mx-auto">
+                <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-crown text-2xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold mb-4">Programme Clients Fidèles</h2>
+                <p class="text-xl mb-6 text-purple-100">
+                    Votre fidélité mérite d'être récompensée !
+                </p>
+                <p class="text-purple-100 mb-8">
+                    Mes clients les plus fidèles bénéficient automatiquement de réductions exclusives,
+                    d'un support prioritaire et d'offres spéciales. Plus vous commandez, plus vous économisez !
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white bg-opacity-10 rounded-lg p-4">
+                        <i class="fas fa-percentage text-2xl mb-3"></i>
+                        <h4 class="font-bold text-lg mb-2">Réductions Exclusives</h4>
+                        <p class="text-sm">Jusqu'à -20% sur vos commandes répétées</p>
+                    </div>
+                    <div class="bg-white bg-opacity-10 rounded-lg p-4">
+                        <i class="fas fa-clock text-2xl mb-3"></i>
+                        <h4 class="font-bold text-lg mb-2">Support Prioritaire</h4>
+                        <p class="text-sm">Réponse garantie sous 1 heure</p>
+                    </div>
+                    <div class="bg-white bg-opacity-10 rounded-lg p-4">
+                        <i class="fas fa-gift text-2xl mb-3"></i>
+                        <h4 class="font-bold text-lg mb-2">Offres Spéciales</h4>
+                        <p class="text-sm">Accès aux promotions en avant-première</p>
+                    </div>
+                </div>
+                <p class="text-purple-200 text-sm">
+                    ⭐ Le programme est automatique - plus vous commandez, plus vous progressez dans les avantages !
+                </p>
+            </div>
+        </div>
+    </section>
+
     <!-- Modal pour afficher les captures d'écran en grand -->
     <div id="screenshot-modal" class="hidden fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
         <div class="relative max-w-4xl max-h-full">
@@ -772,8 +919,9 @@
             <p class="mb-4 text-gray-300">Gui&Soft - Cabinet Informatique - Votre partenaire de confiance</p>
             <div class="flex justify-center space-x-6 mb-6">
                 <a href="https://wa.me/message/ON3C65UUCJLGF1" target="_blank" class="text-gray-300 hover:text-white transition-colors text-2xl"><i class="fab fa-whatsapp"></i></a>
-                <a href="#" class="text-gray-300 hover:text-white transition-colors text-2xl"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.youtube.com/channel/UCjJ_jCyijAVrKCQrmJlBeyg" class="text-gray-300 hover:text-white transition-colors text-2xl"><i class="fab fa-youtube"></i></a>
                 <a href="#" class="text-gray-300 hover:text-white transition-colors text-2xl"><i class="fab fa-linkedin"></i></a>
+                <a href="https://facebook.com/MichelGui224" target="_blank" class="text-gray-300 hover:text-white transition-colors text-2xl"><i class="fab fa-facebook"></i></a>
             </div>
             <p class="text-sm text-gray-400">&copy; <span id="current-year"></span> Gui&Soft. Tous droits réservés.</p>
         </div>
@@ -839,6 +987,59 @@
                     <i class="fab fa-whatsapp fa-lg"></i>
                     Passer la commande sur WhatsApp
                 </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========== Modal Description Produit =========== -->
+    <div id="product-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-overlay">
+        <div class="modal-content w-full max-w-2xl">
+            <!-- Header Modal -->
+            <div class="modal-header">
+                <h3 id="product-modal-title" class="text-2xl font-bold">Détails du produit</h3>
+                <button id="close-product-modal-btn" class="absolute top-4 right-4 text-white hover:text-gray-200">
+                    <i class="fas fa-times fa-lg"></i>
+                </button>
+            </div>
+
+            <!-- Corps Modal -->
+            <div class="p-6">
+                <div class="flex flex-col md:flex-row gap-6">
+                    <!-- Image du produit -->
+                    <div class="w-full md:w-1/2">
+                        <img id="product-modal-image" src="" alt="Produit" class="w-full h-64 object-contain rounded-lg bg-gray-100">
+                    </div>
+
+                    <!-- Détails du produit -->
+                    <div class="w-full md:w-1/2">
+                        <h4 id="product-modal-name" class="text-xl font-bold text-gray-900 mb-2"></h4>
+                        <p id="product-modal-description" class="text-gray-600 mb-4">
+                            Produit Microsoft authentique avec licence officielle. Activation permanente et support technique inclus.
+                        </p>
+                        <div class="space-y-2 mb-4">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check text-green-500"></i>
+                                <span class="text-sm">Licence officielle Microsoft</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check text-green-500"></i>
+                                <span class="text-sm">Activation permanente</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check text-green-500"></i>
+                                <span class="text-sm">Support technique inclus</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check text-green-500"></i>
+                                <span class="text-sm">Livraison instantanée</span>
+                            </div>
+                        </div>
+                        <p id="product-modal-price" class="text-2xl font-extrabold text-blue-600 mb-4"></p>
+                        <button id="add-to-cart-from-modal" class="btn-primary w-full flex items-center justify-center gap-2">
+                            <i class="fas fa-cart-plus"></i> Ajouter au panier
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

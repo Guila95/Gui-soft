@@ -114,7 +114,94 @@ document.addEventListener('DOMContentLoaded', function () {
             price: 15.99,
             image: "images/produits_en_vente/windows/Windows7_basic.png",
             category: "windows"
-        }
+        },
+        {
+            id: 17,
+            name: "Microsoft Project pro 2024 ",
+            price: 141.99,
+            image: "images/produits_en_vente/office/project2024.png",
+            category: "office"
+        },
+
+        {
+            id: 18,
+            name: "Microsoft Project pro 2021 ",
+            price: 38.99,
+            image: "images/produits_en_vente/office/msproject2021__.png",
+            category: "office"
+        },
+
+        {
+            id: 19,
+            name: "Microsoft Project pro 2021 (Activation par telephone)",
+            price: 24.99,
+            image: "images/produits_en_vente/office/msproject2021__.png",
+            category: "office"
+        },
+
+        {
+            id: 20,
+            name: "Microsoft Project pro 2019",
+            price: 28.99,
+            image: "images/produits_en_vente/office/msproject2019.png",
+            category: "office"
+        },
+
+        {
+            id: 21,
+            name: "Microsoft project pro 2019 (Activation par telephone )",
+            price: 15.99,
+            image: "images/produits_en_vente/office/msproject2019.png",
+            category: "office"
+        },
+
+        {
+            id: 22,
+            name: "Microsoft Visio pro 2024 ",
+            price: 141.99,
+            image: "images/produits_en_vente/office/visio2024.jpg",
+            category: "office"
+        },
+
+        {
+            id: 23,
+            name: "Microsoft Visio pro 2021 ",
+            price: 38.99,
+            image: "images/produits_en_vente/office/visio2021.webp",
+            category: "office"
+        },
+
+        {
+            id: 24,
+            name: "Microsoft Visio pro 2021 (Activation par telephone) ",
+            price: 24.99,
+            image: "images/produits_en_vente/office/visio2021.webp",
+            category: "office"
+        },
+
+        {
+            id: 25,
+            name: "Microsoft Visio pro 2019 ",
+            price: 28.99,
+            image: "images/produits_en_vente/office/visio2019.webp",
+            category: "office"
+        },
+
+        {
+            id: 26,
+            name: "Microsoft Visio pro 2019 (Activation par telephone) ",
+            price: 15.99,
+            image: "images/produits_en_vente/office/visio2019.webp",
+            category: "office"
+        },
+
+        {
+            id: 27,
+            name: "Windows Server Datacenter  (Activation par telephone) ",
+            price: 21.99,
+            image: "images/produits_en_vente/windows/windows_server.png",
+            category: "windows"
+        },
     ];
 
     // --- ÉTAT DU PANIER ---
@@ -146,6 +233,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const screenshotImages = document.querySelectorAll('.screenshot-image');
     const videoTestimonialBtn = document.querySelector('.video-testimonial-btn');
 
+    // Sélecteurs pour le modal de description produit
+    const productModal = document.getElementById('product-modal');
+    const closeProductModalBtn = document.getElementById('close-product-modal-btn');
+    const productModalTitle = document.getElementById('product-modal-title');
+    const productModalImage = document.getElementById('product-modal-image');
+    const productModalName = document.getElementById('product-modal-name');
+    const productModalDescription = document.getElementById('product-modal-description');
+    const productModalPrice = document.getElementById('product-modal-price');
+    const addToCartFromModal = document.getElementById('add-to-cart-from-modal');
+
     // --- FONCTIONS PRINCIPALES ---
 
     function renderProducts() {
@@ -161,7 +258,7 @@ document.addEventListener('DOMContentLoaded', function () {
         products.forEach(product => {
             const productCard = `
                 <div class="product-card">
-                    <div class="w-full h-48 bg-gray-200 flex items-center justify-center overflow-hidden">
+                    <div class="w-full h-48 bg-gray-200 flex items-center justify-center overflow-hidden cursor-pointer view-product-details" data-id="${product.id}">
                         <img src="${product.image}" alt="${product.name}" 
                             class="w-full h-full object-contain p-4"
                             onerror="this.onerror=null; this.src='https://placehold.co/400x400/CCCCCC/FFFFFF?text=Image+Produit';">
@@ -169,11 +266,18 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div class="p-5">
                         <h3 class="text-lg font-bold text-gray-900 truncate">${product.name}</h3>
                         <p class="text-xl font-extrabold text-blue-600 my-2">${product.price.toFixed(2)} €</p>
-                        <button
-                            class="add-to-cart-btn btn-primary w-full flex items-center justify-center gap-2"
-                            data-id="${product.id}">
-                            <i class="fas fa-cart-plus"></i> Ajouter au panier
-                        </button>
+                        <div class="flex gap-2">
+                            <button
+                                class="view-details-btn btn-secondary flex-1 flex items-center justify-center gap-2"
+                                data-id="${product.id}">
+                                <i class="fas fa-info-circle"></i> Détails
+                            </button>
+                            <button
+                                class="add-to-cart-btn btn-primary flex-1 flex items-center justify-center gap-2"
+                                data-id="${product.id}">
+                                <i class="fas fa-cart-plus"></i> Ajouter
+                            </button>
+                        </div>
                     </div>
                 </div>
             `;
@@ -262,6 +366,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 cartCountBadge.classList.remove('add-to-cart-animation');
             }, 500);
         }
+
+        // Afficher une notification
+        showNotification(`${product.name} ajouté au panier !`);
     }
 
     function changeQuantity(productId, newQuantity) {
@@ -288,6 +395,53 @@ document.addEventListener('DOMContentLoaded', function () {
         if (cartModal) {
             cartModal.classList.add('hidden');
         }
+    }
+
+    // --- FONCTIONS POUR LE MODAL DE DESCRIPTION PRODUIT ---
+    function showProductModal(productId) {
+        const product = products.find(p => p.id === parseInt(productId));
+        if (!product) return;
+
+        // Remplir le modal avec les données du produit
+        productModalTitle.textContent = 'Détails du produit';
+        productModalImage.src = product.image;
+        productModalImage.alt = product.name;
+        productModalName.textContent = product.name;
+        productModalPrice.textContent = `${product.price.toFixed(2)} €`;
+
+        // Mettre à jour l'ID du produit sur le bouton "Ajouter au panier" dans le modal
+        addToCartFromModal.setAttribute('data-id', product.id);
+
+        // Afficher le modal
+        productModal.classList.remove('hidden');
+    }
+
+    function hideProductModal() {
+        productModal.classList.add('hidden');
+    }
+
+    function showNotification(message) {
+        // Créer une notification temporaire
+        const notification = document.createElement('div');
+        notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300';
+        notification.textContent = message;
+
+        document.body.appendChild(notification);
+
+        // Animation d'entrée
+        setTimeout(() => {
+            notification.classList.remove('translate-x-full');
+            notification.classList.add('translate-x-0');
+        }, 100);
+
+        // Supprimer après 3 secondes
+        setTimeout(() => {
+            notification.classList.remove('translate-x-0');
+            notification.classList.add('translate-x-full');
+            setTimeout(() => {
+                document.body.removeChild(notification);
+            }, 300);
+        }, 3000);
     }
 
     // --- CORRECTION DE LA FONCTION WHATSAPP ---
@@ -406,8 +560,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             });
         }
-        
-        
     }
 
     // --- INITIALISATION ---
@@ -440,6 +592,43 @@ document.addEventListener('DOMContentLoaded', function () {
             addToCart(productId);
         }
     });
+
+    // Clic sur "Voir détails" ou sur l'image du produit
+    document.addEventListener('click', function (e) {
+        if (e.target.classList.contains('view-details-btn') || e.target.closest('.view-details-btn')) {
+            const button = e.target.classList.contains('view-details-btn') ? e.target : e.target.closest('.view-details-btn');
+            const productId = button.getAttribute('data-id');
+            showProductModal(productId);
+        }
+
+        if (e.target.classList.contains('view-product-details') || e.target.closest('.view-product-details')) {
+            const element = e.target.classList.contains('view-product-details') ? e.target : e.target.closest('.view-product-details');
+            const productId = element.getAttribute('data-id');
+            showProductModal(productId);
+        }
+    });
+
+    // Fermer le modal de description produit
+    if (closeProductModalBtn) {
+        closeProductModalBtn.addEventListener('click', hideProductModal);
+    }
+
+    if (productModal) {
+        productModal.addEventListener('click', function (e) {
+            if (e.target === productModal) {
+                hideProductModal();
+            }
+        });
+    }
+
+    // Ajouter au panier depuis le modal
+    if (addToCartFromModal) {
+        addToCartFromModal.addEventListener('click', function () {
+            const productId = this.getAttribute('data-id');
+            addToCart(productId);
+            hideProductModal();
+        });
+    }
 
     // Clic sur les boutons de quantité dans le panier
     if (cartItemsList) {
@@ -500,7 +689,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
-
 
     // --- MENU MOBILE ---
     function setupMobileMenu() {
