@@ -42,6 +42,7 @@ Site e-commerce spécialisé dans la vente de licences Microsoft et services de 
 - Modaux interactifs
 - Notifications toast
 
+
 ### 🔧 **Fonctionnalités Techniques**
 - Gestion complète du panier
 - Persistance des données
